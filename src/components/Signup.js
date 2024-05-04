@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { PersonFill } from "react-bootstrap-icons";
 const Signup = (props) => {
   let navigate = useNavigate();
   const [Credentials, setCredentials] = useState({
@@ -34,11 +34,48 @@ const Signup = (props) => {
     setCredentials({ ...Credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="container my-5">
+    <div
+      className="container my-5"
+      style={{
+        backgroundColor: props.mode === "dark" ? "white" : "black",
+
+        border: props.mode === "dark" ? "1px solid white" : "1px solid black",
+        width: "40%",
+        height: "70%",
+        margin: "auto",
+        borderRadius: "10px",
+        paddingBottom: "15px",
+      }}
+    >
       <form onSubmit={handlesubmit}>
-        <h1 className="my-5">Sign up</h1>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <PersonFill
+            style={{
+              color: props.mode === "dark" ? "black" : "white",
+              width: "70px",
+              height: "70px",
+              paddingTop: "5px",
+            }}
+          />
+        </div>
+        <div className="signup-heading">
+          <h1
+            className="my-5"
+            style={{
+              color: props.mode === "dark" ? "black" : "white",
+            }}
+          >
+            Sign Up{" "}
+          </h1>
+        </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
+          <label
+            htmlFor="email"
+            className="form-label"
+            style={{
+              color: props.mode === "dark" ? "black" : "white",
+            }}
+          >
             Name
           </label>
           <input
@@ -54,7 +91,13 @@ const Signup = (props) => {
             aria-describedby="emailHelp"
             onChange={onchange}
           />
-          <label htmlFor="email" className="form-label">
+          <label
+            htmlFor="email"
+            className="form-label"
+            style={{
+              color: props.mode === "dark" ? "black" : "white",
+            }}
+          >
             Email address
           </label>
           <input
@@ -72,7 +115,13 @@ const Signup = (props) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label
+            htmlFor="password"
+            className="form-label"
+            style={{
+              color: props.mode === "dark" ? "black" : "white",
+            }}
+          >
             Password
           </label>
           <input
@@ -88,9 +137,15 @@ const Signup = (props) => {
             onChange={onchange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Register and Login
-        </button>
+        <div style={{ textAlign: "center" }}>
+          <button
+            type="submit"
+            style={{ margin: "0 auto" }}
+            className="btn btn-primary"
+          >
+            Register and Login
+          </button>
+        </div>
       </form>
     </div>
   );
