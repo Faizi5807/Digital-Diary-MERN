@@ -12,7 +12,7 @@ const Navbar = (props) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/">
-          MyNotes
+          CloudDiary
         </NavLink>
         <button
           className="navbar-toggler"

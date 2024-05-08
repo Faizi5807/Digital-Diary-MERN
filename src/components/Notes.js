@@ -31,6 +31,15 @@ const Notes = (props) => {
       etag: currentnote.tag,
     });
   };
+  const viewnote = (currentnote) => {
+    ref.current.click();
+    setnote({
+      id: currentnote._id,
+      etitle: currentnote.title,
+      edescription: currentnote.description,
+      etag: currentnote.tag,
+    });
+  };
   const handleclick = () => {
     // console.log("handle click");
     editnote(note.id, note.etitle, note.edescription, note.etag);
@@ -157,9 +166,15 @@ const Notes = (props) => {
 
       <div className="row my-3">
         <h3>Your Notes</h3>
+
         {notes.map((notes) => {
           return (
-            <Noteitem key={notes._id} updatenote={updatenote} notes={notes} />
+            <Noteitem
+              key={notes._id}
+              updatenote={updatenote}
+              viewnote={viewnote}
+              notes={notes}
+            />
           );
         })}
       </div>
