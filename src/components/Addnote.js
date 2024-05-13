@@ -17,13 +17,10 @@ const Addnote = (props) => {
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(text);
-    // isCopied("Copied to Clipboard")
-    // setTimeout(() => {
-    //     isCopied("Copy Text")
-    // }, 1200);
   };
   const HOC = (e) => {
     setText(e.target.value);
+    setnote({ ...note, [e.target.name]: e.target.value });
   };
   const refresh = () => {
     setText("");
@@ -33,7 +30,7 @@ const Addnote = (props) => {
     <div
       className="container my-3"
       style={{
-        backgroundColor: props.mode === "dark" ? "white" : "black",
+        backgroundColor: props.mode === "dark" ? "white" : "#00002B",
 
         border: props.mode === "dark" ? "1px solid white" : "1px solid black",
         width: "40%",
@@ -47,6 +44,7 @@ const Addnote = (props) => {
         className="my-3"
         style={{
           color: props.mode === "dark" ? "black" : "white",
+          fontFamily: "Poppins, sans-serif",
         }}
       >
         Add a Note

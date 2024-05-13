@@ -51,7 +51,7 @@ const Navbar = (props) => {
               htmlFor="flexRadioDefault1"
               style={{ color: "white" }}
             >
-              Green Mode
+              Green
             </label>
           </div>
           &nbsp; &nbsp;
@@ -68,7 +68,7 @@ const Navbar = (props) => {
               htmlFor="flexRadioDefault1"
               style={{ color: "white" }}
             >
-              Red Mode
+              Red
             </label>
           </div>
           &nbsp; &nbsp;
@@ -85,7 +85,7 @@ const Navbar = (props) => {
               htmlFor="flexRadioDefault1"
               style={{ color: "white" }}
             >
-              Yellow Mode
+              Yellow
             </label>
           </div>
           &nbsp; &nbsp;
@@ -102,7 +102,7 @@ const Navbar = (props) => {
               htmlFor="flexRadioDefault1"
               style={{ color: "white" }}
             >
-              Blue Mode
+              Blue
             </label>
           </div>
           {!localStorage.getItem("token") ? (

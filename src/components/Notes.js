@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Noteitem from "./Noteitem";
 import Addnote from "./Addnote";
 import { useNavigate } from "react-router-dom";
+import ViewNote from "./ViewNote";
 const Notes = (props) => {
   const context = useContext(notecontext);
   let navigate = useNavigate();
@@ -31,15 +32,13 @@ const Notes = (props) => {
       etag: currentnote.tag,
     });
   };
+  const [showViewModal, setShowViewModal] = useState(false); // State to control modal visibility
+  const [selectedNote, setSelectedNote] = useState(note);
   const viewnote = (currentnote) => {
-    ref.current.click();
-    setnote({
-      id: currentnote._id,
-      etitle: currentnote.title,
-      edescription: currentnote.description,
-      etag: currentnote.tag,
-    });
+    setSelectedNote(currentnote); // Store the selected note
+    setShowViewModal(true);
   };
+
   const handleclick = () => {
     // console.log("handle click");
     editnote(note.id, note.etitle, note.edescription, note.etag);
@@ -52,6 +51,13 @@ const Notes = (props) => {
   return (
     <>
       <Addnote />
+
+      {showViewModal && (
+        <ViewNote
+          selectedNote={selectedNote}
+          onClose={() => setShowViewModal(false)}
+        />
+      )}
       <>
         {/* Modal */}
         <div
@@ -163,9 +169,8 @@ const Notes = (props) => {
           </div>
         </div>
       </>
-
       <div className="row my-3">
-        <h3>Your Notes</h3>
+        <h3 style={{ color: "white" }}>Your Notes</h3>
 
         {notes.map((notes) => {
           return (

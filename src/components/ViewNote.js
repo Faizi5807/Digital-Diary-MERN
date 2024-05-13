@@ -1,53 +1,28 @@
-import { React, useEffect, useRef, useState } from "react";
-import notecontext from "../context/notes/noteContext";
-import { useContext } from "react";
-import Noteitem from "./Noteitem";
-import Addnote from "./Addnote";
-import { useNavigate } from "react-router-dom";
+import { React, useRef, useState } from "react";
 const ViewNote = (props) => {
-  const context = useContext(notecontext);
-  let navigate = useNavigate();
-  const { notes, getallnotes } = context;
   const [text, setText] = useState("");
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      getallnotes();
-    } else {
-      navigate("/login");
-    }
-  }, []);
-  const [note, setnote] = useState({
-    id: "",
-    etitle: "",
-    edescription: "",
-    etag: "",
-  });
   const ref = useRef(null);
-  const viewnote = (currentnote) => {
-    ref.current.click();
-    setnote({
-      id: currentnote._id,
-      etitle: currentnote.title,
-      edescription: currentnote.description,
-      etag: currentnote.tag,
-    });
-  };
   const handleCopyClick = () => {
-    navigator.clipboard.writeText(text);
-    // isCopied("Copied to Clipboard")
-    // setTimeout(() => {
-    //     isCopied("Copy Text")
-    // }, 1200);
+    navigator.clipboard.writeText(
+      props.selectedNote.title + "\n" + props.selectedNote.description
+    );
   };
+
+  function textToSpeech() {
+    const Speech = new SpeechSynthesisUtterance();
+    const message = props.selectedNote.title + props.selectedNote.description;
+    Speech.lang = "eng";
+    Speech.text = message;
+    window.speechSynthesis.speak(Speech);
+  }
 
   return (
     <>
-      <Addnote />
       <>
         {/* Modal */}
         <div
           className="modal fade "
-          id="exampleModal"
+          id="exampleModal_2"
           tabIndex={-1}
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -68,11 +43,11 @@ const ViewNote = (props) => {
                 <div className="conatiner my-3">
                   <div className="mb-3">
                     <p>
-                      <b>{note.etitle}</b>
+                      <b>{props.selectedNote.title}</b>
                     </p>
                   </div>
                   <div className="mb-3">
-                    <p value={text}>{note.edescription}</p>
+                    <p id="NoteD">{props.selectedNote.description}</p>
                   </div>
                 </div>
               </div>
@@ -87,6 +62,14 @@ const ViewNote = (props) => {
                 </button>
                 <button
                   type="button"
+                  className="btn btn-warning"
+                  data-bs-dismiss="modal"
+                  onClick={textToSpeech}
+                >
+                  Speech My Note
+                </button>
+                <button
+                  type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
                 >
@@ -97,14 +80,6 @@ const ViewNote = (props) => {
           </div>
         </div>
       </>
-
-      <div className="row my-3">
-        <h3>Your Notes</h3>
-
-        {notes.map((notes) => {
-          return <Noteitem key={notes._id} viewnote={viewnote} notes={notes} />;
-        })}
-      </div>
     </>
   );
 };

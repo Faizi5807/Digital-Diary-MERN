@@ -7,8 +7,11 @@ const Noteitem = (props) => {
   const { notes, updatenote, viewnote } = props;
   return (
     <div className="col-md-3 my-2">
-      <div className="card">
-        <div className="card-body">
+      <div className="card" style={{ border: "20px", borderRadius: "50px" }}>
+        <div
+          className="card-body"
+          style={{ backgroundColor: "black", color: "white" }}
+        >
           <h5 className="card-title">{notes.title}</h5>
           <p className="card-text">{notes.description}</p>
           <i
@@ -26,9 +29,9 @@ const Noteitem = (props) => {
             }}
           ></i>
           <i
-            className="fa-solid fa-pen-to-square mx-2"
+            className="fa-solid fa-eye mx-2"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#exampleModal_2"
             onClick={() => {
               viewnote(notes);
             }}
