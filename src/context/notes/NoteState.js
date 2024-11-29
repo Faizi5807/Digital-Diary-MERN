@@ -26,7 +26,7 @@ const Notestate = (props) => {
   // const update = ()=>{
   //   setTimeout(() => {
   //     setState({
-  //       "name":"Arslan",
+  //       "name":"Faizan",
   //     })
   //   }, 2000);
   // }
